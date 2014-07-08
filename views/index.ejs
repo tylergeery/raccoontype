@@ -30,6 +30,8 @@
     	<span class="bl">n</span>
     	<span class="gray">g</span>
     </h3>
+    <div id="gameStart">Start</div>
+    <div id="gameEnd"></div>
     <canvas id="gameCanvas" class="full-width" width="1200" height="550">Canvas not working</canvas>
     <div id="typeString"></div>
     <table class="block relative">
@@ -43,6 +45,23 @@
     		<td>Correct: </td><td id="correct">0</td>
     	</tr>
     </table>
+
+    <div id="gameEnd">
+    	<span class="epic">Well done!!</span>
+    	<br />
+    	Here are your results:
+    	<table class="block relative">
+    		<tr>
+    			<td>WPM: </td><td id="wpm_result">0</td>
+    		</tr>
+    		<tr>
+    			<td>Errors: </td><td id="errors_result">0</td>
+    		</tr>
+    		<tr>
+    			<td>Correct: </td><td id="correct_result">0</td>
+    		</tr>
+    	</table>
+    </div>
   </body>
   <script src="../javascripts/game.js"></script>
 </html>
