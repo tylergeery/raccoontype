@@ -5,7 +5,43 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h3 class="full-width red">
+    	<span class="bl">R</span>
+    	<span class="gray">a</span>
+    	<span class="bl">c</span>
+    	<span class="gray">c</span>
+    	<span class="bl">o</span>
+    	<span class="gray">o</span>
+    	<span class="bl">n</span>
+    	<span class="spacer"> </span>
+    	<span class="bl">T</span>
+    	<span class="gray">e</span>
+    	<span class="bl">a</span>
+    	<span class="gray">c</span>
+    	<span class="bl">h</span>
+    	<span class="gray">e</span>
+    	<span class="bl">s</span>
+    	<span class="spacer"> </span>
+    	<span class="bl">T</span>
+    	<span class="gray">y</span>
+    	<span class="bl">p</span>
+    	<span class="gray">i</span>
+    	<span class="bl">n</span>
+    	<span class="gray">g</span>
+    </h3>
+    <canvas id="gameCanvas" class="full-width" width="1200" height="550">Canvas not working</canvas>
+    <div id="typeString"></div>
+    <table class="block relative">
+    	<tr>
+    		<td>WPM: </td><td id="wpm">0</td>
+    	</tr>
+    	<tr>
+    		<td>Errors: </td><td id="errors">0</td>
+    	</tr>
+    	<tr>
+    		<td>Correct: </td><td id="correct">0</td>
+    	</tr>
+    </table>
   </body>
+  <script src="../javascripts/game.js"></script>
 </html>
