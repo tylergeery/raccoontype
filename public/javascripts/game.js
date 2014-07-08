@@ -22,6 +22,7 @@ var errors = 0,
 	spot = 1,
 	gameStart = false;
 
+
 var typeString = "This is a wild raccoon adventure. Stay out of the garbage! This is a wild raccoon adventure. Stay out of the garbage! This is a wild raccoon adventure. Stay out of the garbage! blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah";
 document.getElementById('typeString').innerHTML = typeString;
 
@@ -43,27 +44,29 @@ window.onkeypress = function(key) {
 	var expected = typeString[0];
 
 	if(attempt === expected) {
-		correctString(typeString);
+		return correctString(typeString);
 	} else {
 		errors++;
-		wrongString();
+		return wrongString();
 	}
-
 };
 
 var correctString = function() {
 	correct++;
+	var multiplier = (correct % 20) * (-50);
 	typeString = typeString.substr(1);
 	document.getElementById("correct").innerHTML = correct;
 	document.getElementById('typeString').innerHTML = typeString;
+	document.getElementById('gameCanvas').style["background-position"] = multiplier+"% 0%"
 
 	/* Set the next picture determined by if odd or even correct count */
+	console.log("Current picture:", img.src);
 	img.src = correct % 2 ? 'images/raccooon_second.png' : 'images/raccooon_first.png';
-
-
+	return false;
 };
 
 var wrongString = function() {
 	errors++;
 	document.getElementById("errors").innerHTML = errors;
+	return false;
 }

@@ -9,7 +9,7 @@ a {
 }
 
 .full-width {width:100%; padding:10px;}
-canvas {min-height:500px; background-image:url('../images/background.jpg'); background-repeat:repeat-x;}
+canvas {min-height:500px; background-image:url('../images/background_w_garbage.jpg'); background-repeat:repeat-x; width:200%; background-size:1200px 620px; }
 h3 {font-size:1.5em; color:#c5c5c5; text-align:center; padding:5px;}
 .bl {color:black; padding:0; margin:0; width:1em;}
 .gray {color:gray; padding:0; margin:0; width:1em;}
@@ -20,5 +20,5 @@ h3 {font-size:1.5em; color:#c5c5c5; text-align:center; padding:5px;}
 
 #correct {color:green;}
 #errors {color:red;}
-#typeString {font-size:24px; text-align:center; color:blue; padding:10px;}
-#typeString::first-letter {background:rgb(200,200,200);}
+#typeString {font-size:24px; text-align:center; color:rgb(90,90,90); padding:10px;}
+#typeString::first-letter {background:rgb(0,0,0); color:white; padding:2px;}
