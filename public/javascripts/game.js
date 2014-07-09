@@ -57,39 +57,43 @@ var startGame = function() {
 		wpm = Math.floor(((correct-(errors*.4))/5)/(count/60));
 		document.getElementById('wpm').innerHTML = wpm > 0 ? wpm : 0;
 		var change = false;
-		if (wpm > 100) {alert("Congrats Trev, you're a stud!");}
 		if(wpm > 90) {
-			window.altitude = 250;
-			if(level!==7) {
+			window.altitude = 180;
+			if(level===1) {change=true; level=3; window.img.src = 'images/raccooon_fly.png';}
+			else if(level!==7) {
 				change = true;
 				level = 7;
 			} 
 		} else if (wpm > 80) {
-			window.altitude = 275;
-			if(level!==6) {
+			window.altitude = 220;
+			if(level===1) {change=true; level=3; window.img.src = 'images/raccooon_fly.png';}
+			else if(level!==6) {
 				change = true;
 				level = 6;
 			} 
 		} else if (wpm > 70) {
-			window.altitude = 300;
-			if(level!==5) {
+			window.altitude = 260;
+			if(level===1) {change=true; level=3; window.img.src = 'images/raccooon_fly.png';}
+			else if(level!==5) {
 				change = true;
 				level = 5;
 			} 
-		} else if (wpm > 30) {
-			window.altitude = 325;
-			if(level!==4) {
+		} else if (wpm > 60) {
+			window.altitude = 280;
+			if(level===1) {change=true; level=3; window.img.src = 'images/raccooon_fly.png';}
+			else if(level!==4) {
 				change = true;
 				level = 4;
 			} 
-		} else if (wpm > 20) {
-			window.altitude = 350;
-			if(level!==3) {
+		} else if (wpm > 50) {
+			window.altitude = 320;
+			if(level===1) {change=true; level=3; window.img.src = 'images/raccooon_fly.png';}
+			else if(level!==3) {
 				change = true;
 				level = 3;
 			} 
-		} else if (wpm > 10) {
-			window.altitude = 375;
+		} else if (wpm > 40) {
+			window.altitude = 360;
 			if(level > 2) {
 				change = true;
 				level = 2;
@@ -154,8 +158,9 @@ var wrongString = function() {
 
 var endGame = function() {
 	clearInterval(timer);
-	document.getElementById('hidden').style.display = 'block';
+	document.getElementById('gameEnd').style.visibility = 'visible';
 	document.getElementById("correct_result").innerHTML = correct;
 	document.getElementById('errors_result').innerHTML = errors;
 	document.getElementById('wpm_result').innerHTML = wpm;
+	return '';
 }
