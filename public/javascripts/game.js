@@ -7,19 +7,20 @@ if (document.height > 700) {
 }
 
 var context = canvas.getContext('2d');
-var img = new Image();
+window.img = new Image();
 
-img.onload = function() {
+window.img.onload = function() {
   context.drawImage(img, 525, 400, 150, 150);
 };
 
-img.src = 'images/raccooon_first.png';
+window.img.src = 'images/raccooon_first.png';
 
 var errors = 0, 
 	correct = 0,
 	count = 0,
 	wpm = 0,
 	spot = 1,
+	level = 1,
 	gameStart = false,
 	typeString,
 	timer;
@@ -55,31 +56,61 @@ var startGame = function() {
 		count++;
 		wpm = Math.floor(((correct-(errors*.4))/5)/(count/60));
 		document.getElementById('wpm').innerHTML = wpm > 0 ? wpm : 0;
+		var change = false;
+		if (wpm > 100) {alert("Congrats Trev, you're a stud!");}
 		if(wpm > 90) {
 			window.altitude = 250;
-			img.src = 'images/raccooon_fly.png'
+			if(level!==7) {
+				change = true;
+				level = 7;
+			} 
 		} else if (wpm > 80) {
 			window.altitude = 275;
-			img.src = 'images/raccooon_fly.png'
+			if(level!==6) {
+				change = true;
+				level = 6;
+			} 
 		} else if (wpm > 70) {
 			window.altitude = 300;
-			img.src = 'images/raccooon_fly.png'
-		} else if (wpm > 60) {
+			if(level!==5) {
+				change = true;
+				level = 5;
+			} 
+		} else if (wpm > 30) {
 			window.altitude = 325;
-			img.src = 'images/raccooon_fly.png'
-		} else if (wpm > 50) {
-			window.altitude = 350;	
-			img.src = 'images/raccooon_fly.png'		
-		} else if (wpm > 40) {
+			if(level!==4) {
+				change = true;
+				level = 4;
+			} 
+		} else if (wpm > 20) {
+			window.altitude = 350;
+			if(level!==3) {
+				change = true;
+				level = 3;
+			} 
+		} else if (wpm > 10) {
 			window.altitude = 375;
-			img.src = 'images/raccooon_fly.png'
+			if(level > 2) {
+				change = true;
+				level = 2;
+			} else if (level !== 2) {
+				change = true;
+				window.img.src = 'images/raccooon_fly.png';
+				level = 2;
+			}
 		} else {
 			window.altitude = 400;
+			if(level!==1) {
+				change = true;
+				level = 1;
+			}
 		}
-		requestAnimFrame(function() {
-          animate(img, canvas, context, window.altitude);
-        });
-	}, 1000);
+		if(change) {
+			context.clearRect(0, 0, canvas.width, canvas.height);
+    		context.drawImage(window.img, 525, window.altitude, 150, 150);
+		}
+	}, 1000);	
+			
 
 	/* Start the keydown detections */
 	window.onkeypress = function(key) {
@@ -98,25 +129,18 @@ var startGame = function() {
 	};
 }
 
-var animate = function(img, canvas, context, altitude) {
-	// clear
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(img, 525, altitude, 150, 150);
-}
-	
 
 var correctString = function() {
 	correct++;
 	var multiplier = (correct % 20) * (-50);
-	typeString = typeString.substr(1);
+	typeString = typeString.substr(1) ? typeString.substr(1) : endGame();
 	document.getElementById("correct").innerHTML = correct;
 	document.getElementById('typeString').innerHTML = typeString;
 	document.getElementById('gameCanvas').style["background-position"] = multiplier+"% 0%";
 
 	/* Set the next picture determined by if odd or even correct count */
-	console.log("Current picture:", img.src);
-	if (img.src !== 'images/raccooon_fly.png') {
-		img.src = correct % 2 ? 'images/raccooon_second.png' : 'images/raccooon_first.png';
+	if (window.img.src !== 'images/raccooon_fly.png' && level < 2) {
+		window.img.src = correct % 2 ? 'images/raccooon_second.png' : 'images/raccooon_first.png';
 	}
 	return false;
 };
